@@ -8,7 +8,9 @@
 using std::string;
 using std::vector;
 
+// ------------------------------------------------------
 // 匿名命名空间：辅助函数
+// ------------------------------------------------------
 namespace {
 
 string trim_copy(const string &s) {
@@ -39,13 +41,14 @@ string join_tags(const vector<string> &tags) {
 
 } // anonymous namespace
 
+// ------------------------------------------------------
 // 静态成员初始化
-
+// ------------------------------------------------------
 int Song::next_id_ = 1;
 
-
+// ------------------------------------------------------
 // 构造函数
-
+// ------------------------------------------------------
 Song::Song(const string &title, const string &artist, int duration_sec, int rating) {
     string t = trim_copy(title);
     string a = trim_copy(artist);
@@ -74,7 +77,7 @@ Song::Song(const string &title, const string &artist, int duration_sec, int rati
         return;
     }
 
-    
+    // 合法
     id_ = next_id_++;
     title_ = t;
     artist_ = a;
@@ -83,7 +86,9 @@ Song::Song(const string &title, const string &artist, int duration_sec, int rati
     valid_ = true;
 }
 
-
+// ------------------------------------------------------
+// Setters
+// ------------------------------------------------------
 bool Song::set_title(const string &t) {
     string x = trim_copy(t);
     if (x.empty()) {
@@ -122,7 +127,9 @@ bool Song::set_rating(int r) {
     return true;
 }
 
-
+// ------------------------------------------------------
+// 标签管理
+// ------------------------------------------------------
 bool Song::add_tag(const string &tag) {
     string x = trim_copy(tag);
     if (x.empty()) {
@@ -157,7 +164,9 @@ bool Song::remove_tag(const string &tag) {
     return false;
 }
 
-
+// ------------------------------------------------------
+// 关键词匹配
+// ------------------------------------------------------
 bool Song::matches_keyword(const string &kw) const {
     string k = trim_copy(kw);
     if (k.empty())
